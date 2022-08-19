@@ -1,6 +1,6 @@
-# student-record-mgmt
+# college-mgmt-system
 # Setting up database
-    -Go to /student_mgmt/student_mgmt/settings.py and make changes in data base confoguration shown as below
+    -Go to /college_mgmt/college_mgmt/settings.py and make changes in data base confoguration shown as below
     <pre>
     DATABASES = {
     'default': {
@@ -10,7 +10,7 @@
     }
     </pre>
     Run these commannds for creating database
-    $ cd student_mgmt
+    $ cd college_mgmt
     $ python manage.py makemigrations
     $ python manage.py migrate
 
@@ -25,5 +25,5 @@
     $ pip install -r requirements.txt
         
 # Running application
-    $ cd student_mgmt
+    $ cd college_mgmt
     $ python manage.py runserver
