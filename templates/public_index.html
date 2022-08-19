@@ -1,0 +1,32 @@
+{% load static %}
+<head>
+  <link
+    rel="stylesheet"
+    href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+  />
+  <link
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    rel="stylesheet"
+  />
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <style>
+    .divider:after,
+    .divider:before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #eee;
+    }
+    .h-custom {
+      height: calc(100% - 73px) !important;
+    }
+    @media (max-width: 450px) {
+      .h-custom {
+        height: 100% !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  {% block content %} {% endblock content %}
+</body>

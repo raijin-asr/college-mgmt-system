@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+{% load static %}  
+{% block content %}
+ 
+<section>
+  <!-- Background image -->
+  <div class="p-5 bg-image" style="
+        background-image: url('{% static 'img/edit1.webp' %}');
+        height: 300px; 
+        "></div>
+  <!-- Background image -->
+
+  <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+        margin-top: -100px;
+        background: hsla(0, 0%, 100%, 0.8);
+        backdrop-filter: blur(30px);   margin-bottom:95px">
+    <div class="card-body py-5 px-md-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-5">Edit Selected Student Record</h2>
+          <form method="POST" action="/student/edit">
+            {% csrf_token %}
+            <input type="hidden" name="student_id" value= "{{student.student_id}}">
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="student_name">Name</label>
+                  <input type="text" id="student_name" class="form-control" name="student_name" value="{{student.student_name}}"/>
+                </div>
+
+            <!-- Name input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="roll">Roll No</label>
+              <input type="text" id="roll" class="form-control" name="roll_no" value="{{student.roll_no}}"/>
+            </div>
+
+            <div class="form-outline mb-4">
+          <label  class="form-label">Gender</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" value="Male" 
+            {% if student.gender == "Male" %} checked {% endif %}>
+            <label class="form-check-label" for="exampleRadios1">
+              Male
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender"  value="Female"
+            {% if student.gender == "Female" %} checked {% endif %}>
+            <label class="form-check-label" for="exampleRadios2">
+              Female
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender"  value="Other"
+            {% if student.gender == "Other" %} checked {% endif %}>
+            <label class="form-check-label" for="exampleRadios2">
+              Other
+            </label>
+          </div>
+        </div>
+          <div class="mt-3 mb-3">
+            <label  class="form-label">Faculty</label>
+            <select class="form-control" name="faculty">
+              <option value="BIT" {% if student.faculty == "BIT" %} selected {% endif %}>BIT</option>
+              <option value="BCA" {% if student.faculty == "BCA" %} selected {% endif %}>BCA</option>
+              <option value="BBA" {% if student.faculty == "BBA" %} selected {% endif %}>BBA</option>
+
+            </select>
+          </div>
+    
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-success btn-block mb-4">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
+

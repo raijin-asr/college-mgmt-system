@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>College Management System</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  @media (min-width: 1025px) {
+    .h-custom {
+    height: 100vh !important;
+    }
+    }
+</style>
+  </head>
+<body>
+
+<!-- Navbar section -->
+  <nav class="navbar navbar-expand-lg" style="background: #9febc8!important"> 
+    {% comment %} style="position:fixed; top:0; width:100%; overflow:hidden;" {% endcomment %}
+    <div class="container-fluid" >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">  <img  height="20px" src="{% static 'img/menu.png' %}" /></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      </br><a class="navbar-brand" href="/student/list">
+            <img src="{% static 'img/logo1.png' %}"  class="me-2" height="50" alt="CMS Logo" style="margin-left:20px;"/></a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left:22px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/student/list"><button type="button" class="btn btn-outline-danger">Home</button></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/student/add"><button type="button" class="btn btn-outline-primary">Add Student</button></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/student/list"><button type="button" class="btn btn-outline-success">List Student</button></a>
+          </li>        
+          <li class="nav-item dropdown">
+            <button style="margin: 8px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-danger nav-link dropdown-toggle" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">  
+              Course</button>
+            <ul class="dropdown-menu bg-white" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Add Course</a></li>
+              <li><a class="dropdown-item" href="#">List Course</a></li>
+            </ul>
+          </li> 
+          
+       </ul>
+       <li class="d-flex nav-item dropdown">
+        <button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-warning nav-link dropdown-toggle" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">  
+          <i style="font-size:20px;" class="fa fa-user fa-dark"></i>
+          <span class="text-dark">{{request.session.current_user.user_name}}</span></button>
+        <ul class="dropdown-menu bg-warning" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+
+        </ul>
+      </li>  
+        
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Main section -->
+  <div class="container">
+    {% block content %}
+      
+    {% endblock %}
+  </div>
+
+  <!-- Footer section -->
+  <footer class="bg-danger text-center text-lg-start fixed-bottom" style="margin-top:50px; background: #9febc8!important">
+    <div class="text-center p-3 text-dark">
+      © 2022 Copyright || Developed by <a class="text-dark fw-bold" href="#">AK² Brothers</a>
+    </div>
+  </footer>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}">
+
+  </script> 
+</body>
+</html>
