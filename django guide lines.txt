@@ -1,0 +1,29 @@
+#To create project
+-> django-admin startproject student_mgmt
+# To create application
+-> python manage.py startapp registration
+
+# To make migrations
+-> python manage.py makemigrations
+
+# To Run migrations
+-> python manage.py migrate
+
+# To Run sql migrations
+-> python manage.py sqlmigrate registration 0001
+where registration is app name and '0001' is vesrion
+
+# To run application
+-> python manage.py runserver
+
+#
+
+
+https://www.pluralsight.com/guides/introduction-to-django-templates
+https://www.javatpoint.com/django-and-bootstrap
+https://studygyaan.com/django/django-crud-create-retrieve-update-delete-function-based-views
+https://studygyaan.com/django/how-to-use-mysql-database-with-django-project
+https://studygyaan.com/django
+https://github.com/thapashishir/student-record-mgmt
+
+
