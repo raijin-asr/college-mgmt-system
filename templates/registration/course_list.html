@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+
+{% block content %}
+</br><hr>
+  <h2>List of course Records</h2>
+<hr></br>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <form class="d-flex" role="search" style="height:44px " >
+      <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success me-4" type="submit">Search</button>
+      <a class="link-add" href="/course/add" style="height:44px; width:168px;"><button class="btn btn-outline-danger me-2" type="submit" style="height:44px">Add course</button></a>
+    </form></br>
+    <table class="table table-striped table-hover table-bordered border-white .table-responsive">
+      <thead class="table-warning">
+        <tr>
+          <th scope="col">S.N</th>
+          <th scope="col">Course Name</th>
+          <th scope="col">Course Code</th>
+          <th scope="col">Course Teacher</th>
+          <th scope="col">Faculty</th>
+          <th scope="col" colspan="2" class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for course in  courses %}
+          <tr>
+            <td>{{course.course_id}}</td>
+            <td>{{course.course_name}}</td>
+            <td>{{course.c_code}}</td>
+            <td>{{course.c_teacher}}</td>
+            <td>{{course.faculty}}</td>
+            <td><a href="/course/edit/{{course.course_id}}"><i style="font-size:18px; align:centre;" class="fa fa-edit fa-dark"></i></a></td>
+            <td><a href="/course/delete/{{course.course_id}}"><i style="font-size:18px; color:red;" class="fa fa-remove fa-solid"></i></a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</br>
+<nav aria-label="...">
+  <ul class="pagination justify-content-center align-items-center">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item active " aria-current="page">
+      <a class="page-link" href="#">1<span class="visually-hidden">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link text-dark" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+{% endblock content %}

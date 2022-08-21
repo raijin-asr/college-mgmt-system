@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% load static %}  
+{% block content %}
+
+<section class="h-100 h-custom" style="background-color: white;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex  h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3" style="margin-bottom:80px;">
+          <img src="{% static 'img/signup1.png' %}"
+            class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+            alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+            <h2 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Add New Course </h2>
+
+            <form class="px-md-2" method="POST" action="/course/add">
+              {% csrf_token %}
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="course_name">Course Name</label>
+                <input type="text" id="course_name" class="form-control" name="course_name"/>
+              </div>
+
+                  <div class="form-outline">
+                    <label  class="form-label">Course Code</label>
+                    <input type="text" class="form-control" id="c_code"  name="c_code">        
+                  </div>
+
+                  <div class="form-outline">
+                    <label  class="form-label">Course Teacher</label>
+                    <input type="text" class="form-control" id="c_teacher"  name="c_teacher">        
+                  </div>
+              
+                  <div class="form-outline mb-4">
+                    <label  class="form-label">Faculty</label>
+                    <select class="form-control bg-light" name="faculty">
+                      <option value="BIT">BIT</option>
+                      <option value="BCA">BCA</option>
+                      <option value="BCA">BBA</option>
+                    </select>
+                  </div>
+              <button type="submit" class="btn btn-danger btn-lg mb-1">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></br></br>
+</section>
+
+{% endblock content %}
