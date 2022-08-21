@@ -33,26 +33,29 @@
             <a class="nav-link active" aria-current="page" href="/student/list"><button type="button" class="btn btn-outline-danger">Home</button></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/student/add"><button type="button" class="btn btn-outline-primary">Add Student</button></a>
+            <a class="nav-link" href="/student/list"><button type="button" class="btn btn-outline-primary">Student</button></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/student/list"><button type="button" class="btn btn-outline-success">List Student</button></a>
-          </li>        
-          <li class="nav-item dropdown">
+            <a class="nav-link" href="/teacher/list"><button type="button" class="btn btn-outline-success">Teacher</button></a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="/course/list"><button type="button" class="btn btn-outline-warning text-dark"> Course </button></a>
+          </li>       
+          {% comment %} <li class="nav-item dropdown">
             <button style="margin: 8px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-danger nav-link dropdown-toggle" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">  
               Course</button>
             <ul class="dropdown-menu bg-white" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#">Add Course</a></li>
               <li><a class="dropdown-item" href="#">List Course</a></li>
             </ul>
-          </li> 
+          </li>  {% endcomment %}
           
        </ul>
        <li class="d-flex nav-item dropdown">
-        <button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-warning nav-link dropdown-toggle" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">  
+        <button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-danger nav-link dropdown-toggle" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">  
           <i style="font-size:20px;" class="fa fa-user fa-dark"></i>
           <span class="text-dark">{{request.session.current_user.user_name}}</span></button>
-        <ul class="dropdown-menu bg-warning" aria-labelledby="navbarDropdown">
+        <ul class="dropdown-menu bg-white" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="#">Profile</a></li>
           <li><a class="dropdown-item" href="/logout">Logout</a></li>
 
@@ -74,7 +77,7 @@
   <!-- Footer section -->
   <footer class="bg-danger text-center text-lg-start fixed-bottom" style="margin-top:50px; background: #9febc8!important">
     <div class="text-center p-3 text-dark">
-      © 2022 Copyright || Developed by <a class="text-dark fw-bold" href="#">AK² Brothers(Ameer)</a>
+      ©2022 Copyright || Developed by <a class="text-dark fw-bold" href="#">AK² Brothers</a>
     </div>
   </footer>
   <script src="{% static 'bootstrap/js/bootstrap.min.js' %}">
