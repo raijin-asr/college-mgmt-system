@@ -63,3 +63,19 @@ class StudentDeleteView(View):
         return redirect("/student/list")
     
 
+class StudentSearchView(View):
+    @auth_required
+    def post(self, request, *args, **kwargs):
+        student_name = request.POST.get("student_name", None)
+        result = Student.objects.filter(student_name__icontains = student_name)
+        context = {
+            "students" : result,
+        }
+        return render(request, "registration/student_list.html", context)
+
+#for pagination
+# class Index(ListView):
+#     model = Teachers
+#     context_object_name = 'teachers'
+#     paginate_by = 6
+#     template_name = 'teacher_list.html'

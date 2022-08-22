@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import View
+from django.views.generic import View, ListView
 from . models import Teacher
 from college_mgmt import auth_required
 
@@ -38,7 +38,7 @@ class TeacherEditView(View):
         teacher_id = url_parmeter["teacher_id"]
         teacher=Teacher.objects.get(teacher_id=teacher_id)
         context = {
-            "teacher" : teacher
+            "teachers" : teacher
         }
         return render(request, "registration/teacher_edit.html", context)
     
@@ -62,4 +62,14 @@ class TeacherDeleteView(View):
         Teacher.objects.filter(teacher_id = teacher_id).delete()
         return redirect("/teacher/list")
     
+
+class TeacherSearchView(View):
+    @auth_required
+    def post(self, request, *args, **kwargs):
+        teacher_name = request.POST.get("teacher_name", None)
+        result = Teacher.objects.filter(teacher_name__icontains = teacher_name)
+        context = {
+            "teachers" : result,
+        }
+        return render(request, "registration/teacher_list.html", context)
 

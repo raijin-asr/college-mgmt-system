@@ -1,7 +1,7 @@
 from django.urls import path
-from registration.views import StudentListView, StudentAddView, StudentEditView, StudentDeleteView
-from registration.teacher_views import TeacherListView, TeacherAddView, TeacherEditView, TeacherDeleteView
-from registration.course_views import CourseListView, CourseAddView, CourseEditView, CourseDeleteView
+from registration.views import StudentListView, StudentAddView, StudentEditView, StudentDeleteView, StudentSearchView
+from registration.teacher_views import TeacherListView, TeacherAddView, TeacherEditView, TeacherDeleteView,TeacherSearchView
+from registration.course_views import CourseListView, CourseAddView, CourseEditView, CourseDeleteView, CourseSearchView
 
 
 urlpatterns = [
@@ -11,6 +11,8 @@ urlpatterns = [
     path('student/edit/<student_id>',StudentEditView.as_view(), name="StudentEditGet"),
     path('student/edit', StudentEditView.as_view(), name="StudentEditPost"),
     path('student/delete/<student_id>',StudentDeleteView.as_view(), name="StudentDelete"),
+    path('student/search',StudentSearchView.as_view(), name="StudentSearch"),
+
 
     #teacher url
     path('teacher/list', TeacherListView.as_view(), name="TeacherList"),
@@ -18,11 +20,15 @@ urlpatterns = [
     path('teacher/edit/<teacher_id>',TeacherEditView.as_view(), name="TeacherEditGet"),
     path('teacher/edit', TeacherEditView.as_view(), name="TeacherEditPost"),
     path('teacher/delete/<teacher_id>',TeacherDeleteView.as_view(), name="TeacherDelete"),
+    path('teacher/search',TeacherSearchView.as_view(), name="TeacherSearch"),
+
+
 
     #course url
     path('course/list', CourseListView.as_view(), name="CourseList"),
     path('course/add', CourseAddView.as_view(), name="CourseAdd"),
     path('course/edit/<course_id>',CourseEditView.as_view(), name="CourseEditGet"),
     path('course/edit', CourseEditView.as_view(), name="CourseEditPost"),
-    path('course/delete/<course_id>',CourseDeleteView.as_view(), name="CourseDelete")
+    path('course/delete/<course_id>',CourseDeleteView.as_view(), name="CourseDelete"),
+    path('course/search',CourseSearchView.as_view(), name="CourseSearch")
 ]

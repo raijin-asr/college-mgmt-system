@@ -62,4 +62,12 @@ class CourseDeleteView(View):
         Course.objects.filter(course_id = course_id).delete()
         return redirect("/course/list")
     
-
+class CourseSearchView(View):
+    @auth_required
+    def post(self, request, *args, **kwargs):
+        course_name = request.POST.get("course_name", None)
+        result = Course.objects.filter(course_name__icontains = course_name)
+        context = {
+            "courses" : result,
+        }
+        return render(request, "registration/course_list.html", context)
