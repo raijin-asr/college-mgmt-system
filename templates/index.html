@@ -8,12 +8,14 @@
     {% load static %}  
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <style>
   @media (min-width: 1025px) {
     .h-custom {
     height: 100vh !important;
     }
-    }
+  }
 </style>
   </head>
 <body>
@@ -55,7 +57,7 @@
         <button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-danger nav-link dropdown-toggle" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">  
           <i style="font-size:20px;" class="fa fa-user fa-dark"></i>
           <span class="text-dark">{{request.session.current_user.user_name}}</span></button>
-        <ul class="dropdown-menu bg-white" aria-labelledby="navbarDropdown">
+        <ul class="dropdown-menu bg-white" aria-labelledby="navbarDropdown" style="left:-4px;">
           <li><a class="dropdown-item" href="#">Profile</a></li>
           <li><a class="dropdown-item" href="/logout">Logout</a></li>
 
@@ -74,6 +76,7 @@
     {% endblock %}
   </div>
 
+  
   <!-- Footer section -->
   <footer class="bg-danger text-center text-lg-start fixed-bottom" style="margin-top:50px; background: #9febc8!important">
     <div class="text-center p-3 text-dark">
