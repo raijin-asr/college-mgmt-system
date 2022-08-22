@@ -2,19 +2,30 @@
 
 {% block content %}
 </br><hr>
-<div class="search-part">
-  <h2 style="float:left">List of Student Records</h2>
-  <form class="d-flex" role="search" style="float:right">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-danger" type="submit">Search</button>
-  </form>
-</div></br></br>
+  <h2>List of Student Records</h2>
 <hr></br>
+
 
 <div class="row">
   <div class="col-md-12">
+    <div class="pull-right">
+    <form class="form-inline d-flex" style="height:44px " method="POST" action="/student/search">
+      {% csrf_token %}
+      <input class="form-control me-4" type="text" placeholder="Search" name="student_name">
+      <button class="btn btn-outline-success me-4" type="submit">Search</button>
+      </form>
+    </div>
+      
+    <form class="form-inline d-flex" style="height:44px ">
+      {% csrf_token %}
+      <a class="link-add" href="/student/add" style="height:44px; width:168px;">
+        <button class="btn btn-outline-danger me-2" type="button" style="height:44px">Add Student</button>
+      </a>
+      </form>
+    </br>
+
     <table class="table table-striped table-hover table-bordered border-white .table-responsive">
-      <thead class="table-success">
+      <thead class="table-primary">
         <tr>
           <th scope="col">S.N</th>
           <th scope="col">Name</th>
