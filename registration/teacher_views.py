@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import View, ListView
+from django.views.generic import View
 from . models import Teacher
 from college_mgmt import auth_required
 
