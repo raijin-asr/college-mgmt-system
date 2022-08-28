@@ -4,6 +4,11 @@ from . models import Student
 from college_mgmt import auth_required
 
 # Create your views here.
+class StudentHomeView(View):
+    @auth_required
+    def get(self, request, *args, **kwargs):
+        return render(request, "registration/student_home.html")
+
 class StudentListView(View):
     @auth_required
     def get(self, request):

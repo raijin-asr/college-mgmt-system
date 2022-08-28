@@ -1,11 +1,12 @@
 from django.urls import path
-from registration.views import StudentListView, StudentAddView, StudentEditView, StudentDeleteView, StudentSearchView
-from registration.teacher_views import TeacherListView, TeacherAddView, TeacherEditView, TeacherDeleteView,TeacherSearchView
+from registration.views import StudentListView, StudentAddView, StudentEditView, StudentDeleteView, StudentSearchView, StudentHomeView
+from registration.teacher_views import TeacherListView, TeacherAddView, TeacherEditView, TeacherDeleteView,TeacherSearchView,TeacherHomeView
 from registration.course_views import CourseListView, CourseAddView, CourseEditView, CourseDeleteView, CourseSearchView
 
 
 urlpatterns = [
     #student url
+    path('student/home', StudentHomeView.as_view(), name="StudentHome"),
     path('student/list', StudentListView.as_view(), name="StudentList"),
     path('student/add', StudentAddView.as_view(), name="StudentAdd"),
     path('student/edit/<student_id>',StudentEditView.as_view(), name="StudentEditGet"),
@@ -15,13 +16,13 @@ urlpatterns = [
 
 
     #teacher url
+    path('teacher/home', TeacherHomeView.as_view(), name="TeacherHome"),
     path('teacher/list', TeacherListView.as_view(), name="TeacherList"),
     path('teacher/add', TeacherAddView.as_view(), name="TeacherAdd"),
     path('teacher/edit/<teacher_id>',TeacherEditView.as_view(), name="TeacherEditGet"),
     path('teacher/edit', TeacherEditView.as_view(), name="TeacherEditPost"),
     path('teacher/delete/<teacher_id>',TeacherDeleteView.as_view(), name="TeacherDelete"),
     path('teacher/search',TeacherSearchView.as_view(), name="TeacherSearch"),
-
 
 
     #course url

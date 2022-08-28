@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
-from django.views.generic import View
+from django.views.generic import View, ListView
 from . models import Teacher
 from college_mgmt import auth_required
 
 # Create your views here.
+class TeacherHomeView(View):
+    @auth_required
+    def get(self, request, *args, **kwargs):
+        return render(request, "registration/teacher_home.html")
+
 class TeacherListView(View):
     @auth_required
     def get(self, request):
