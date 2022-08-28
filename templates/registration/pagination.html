@@ -1,0 +1,33 @@
+<div>
+    <span>
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+      <span>
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+      {% endif %}
+    </span>
+  </div>
+
+
+{% for employee in page_obj %}
+  <li class="list-group-item">{{ employee }}</li>
+{% endfor %}
+</ul>
+
+<br><hr>
+
+{% include "pagination.html" %}
+
+{% comment %} path('',Index.as_view()),
+
+#for pagination    
+# class Index(ListView):
+# model = Teacher
+# queryset = Post.objects.all()
+# context_object_name = 'teachers'
+# paginate_by = 1
+# template_name = 'teacher_list.html' {% endcomment %}
