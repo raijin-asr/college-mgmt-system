@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from . models import Student
+from . models import Student, Assignment
 from college_mgmt import auth_required
 
 # Create your views here.
 class StudentHomeView(View):
     @auth_required
     def get(self, request, *args, **kwargs):
-        return render(request, "registration/student_home.html")
+        context={ 
+            "student_count": Student.objects.count()
+        }
+        return render(request, "registration/student_home.html",context)
 
 class StudentListView(View):
     @auth_required
@@ -77,3 +80,32 @@ class StudentSearchView(View):
             "students" : result,
         }
         return render(request, "registration/student_list.html", context)
+
+# Assignment views of Student
+class StudentAssigAddView(View):
+    @auth_required
+    def get(self, request, *args, **kwargs):
+        return render(request, "registration/student_home.html")
+
+    @auth_required
+    def post(self, request, *args, **kwargs):
+        data = {
+            "full_name": request.POST.get("full_name"),
+            "assig_question": request.POST.get("assig_question"),
+            "assig_subject": request.POST.get("assig_subject"),
+            "assig_no": request.POST.get("assig_no"),
+            "assig_answer": request.POST.get("assig_answer"),
+        } 
+        assignment=Assignment.objects.create(**data)
+        assignment.save()
+        return redirect('/student/todo_assignment')
+
+
+class StudentAssigListView(View):
+    @auth_required
+    def get(self, request):
+        assignments=Assignment.objects.all()
+        context = {
+            "assignments" : assignments,
+        }
+        return render(request, "registration/student_home.html", context)

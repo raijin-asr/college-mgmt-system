@@ -1,5 +1,5 @@
 from django.urls import path
-from registration.views import StudentListView, StudentAddView, StudentEditView, StudentDeleteView, StudentSearchView, StudentHomeView
+from registration.views import StudentListView, StudentAddView, StudentEditView, StudentDeleteView, StudentSearchView, StudentHomeView, StudentAssigAddView,StudentAssigListView
 from registration.teacher_views import TeacherListView, TeacherAddView, TeacherEditView, TeacherDeleteView,TeacherSearchView,TeacherHomeView
 from registration.course_views import CourseListView, CourseAddView, CourseEditView, CourseDeleteView, CourseSearchView
 
@@ -13,6 +13,8 @@ urlpatterns = [
     path('student/edit', StudentEditView.as_view(), name="StudentEditPost"),
     path('student/delete/<student_id>',StudentDeleteView.as_view(), name="StudentDelete"),
     path('student/search',StudentSearchView.as_view(), name="StudentSearch"),
+    path('student/submit_assignment',StudentAssigAddView.as_view(), name="StudentSubmitAssignment"),
+    path('student/todo_assignment',StudentAssigListView.as_view(), name="StudentTodoAssignment"),
 
 
     #teacher url

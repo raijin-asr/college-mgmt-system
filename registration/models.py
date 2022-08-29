@@ -38,6 +38,19 @@ class Course(models.Model):
     #table to be used in database
     class Meta:
         db_table = 'courses'
+
+#For Assignments
+class Assignment(models.Model):
+    assig_id = models.BigAutoField(primary_key=True)
+    full_name = models.CharField(max_length=100)
+    assig_question = models.CharField(max_length=500)
+    assig_subject = models.CharField(max_length=50)
+    assig_no = models.CharField(max_length=10)
+    assig_answer = models.CharField(max_length=1000)
+
+    #table to be used in database
+    class Meta:
+        db_table = 'assignments'
                  
 
 
