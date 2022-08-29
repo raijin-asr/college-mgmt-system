@@ -1,4 +1,5 @@
-
+{% block content %}
+{% load static %}  
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,102 +12,175 @@
 
 
     <style>  
-        .card-counter{
-          box-shadow: 2px 2px 10px #DADADA;
-          margin: 5px;
-          padding: 20px 10px;
-          background-color: #fff;
-          height: 100px;
-          border-radius: 5px;
-          transition: .3s linear all;
+        img.card-img-top {
+          height: 400px;
         }
-      
-        .card-counter:hover{
-          box-shadow: 4px 4px 20px #DADADA;
-          transition: .3s linear all;
-        }
-      
-        .card-counter.primary{
-          background-color: #007bff;
-          color: #FFF;
-        }
-      
-        .card-counter.danger{
-          background-color: #ef5350;
-          color: #FFF;
-        }  
-      
-        .card-counter.success{
-          background-color: #66bb6a;
-          color: #FFF;
-        }  
-      
-        .card-counter.info{
-          background-color: #26c6da;
-          color: #FFF;
-        }  
-      
-        .card-counter i{
-          font-size: 5em;
-          opacity: 0.2;
-        }
-      
-        .card-counter .count-numbers{
-          position: absolute;
-          right: 35px;
-          top: 20px;
-          font-size: 32px;
-          display: block;
-        }
-      
-        .card-counter .count-name{
-          position: absolute;
-          right: 35px;
-          top: 65px;
-          font-style: italic;
-          text-transform: capitalize;
-          opacity: 0.5;
-          display: block;
-          font-size: 18px;
-        }
+        
     </style>
-      </head>
-    <body>
+  </head>
+<body>
+</br></br>
+<!-- Horizontal Tab -->
+<!-- Tabs navs -->
+<ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link active"
+      id="ex1-tab-1"
+      data-toggle="tab"
+      href="#ex1-tabs-1"
+      role="tab"
+      aria-controls="ex1-tabs-1"
+      aria-selected="true"
+      >About CMS</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="ex1-tab-2"
+      data-toggle="tab"
+      href="#ex1-tabs-2"
+      role="tab"
+      aria-controls="ex1-tabs-2"
+      aria-selected="false"
+      >About College</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="ex1-tab-3"
+      data-toggle="tab"
+      href="#ex1-tabs-3"
+      role="tab"
+      aria-controls="ex1-tabs-3"
+      aria-selected="false"
+      >About Team</a
+    >
+  </li>
+</ul>
+<!-- Tabs navs -->
+
+<!-- Tabs content -->
+<div class="tab-content" id="ex1-content">
+  <div
+    class="tab-pane fade show active"
+    id="ex1-tabs-1"
+    role="tabpanel"
+    aria-labelledby="ex1-tab-1"
+  >
+</br><h3>1.1 Background</h3>
+College Management System(CMS) is type of management system where records of every student and teacher is kept in computerized way. It is designed to automate the existing manual system through computerized medium for student information management and teacher information management. There are options of faculty available under different provided categories which they can choose as per their interest and needs. Student details are maintained and viewed in user friendly interface by this system. With the CMS, any college can maintain records of student and teacher faster saving time and effort.
+
+  </br></br><h3>1.2 Features</h3>
+The main features of this project are mentioned below:
+<ul>
+  <li>UI: User friendly and clean interface with organized menu options.</li>
+  <li>Database: Use of database to store and manipulate the student data and teacher data.</li>
+  <li>	Login Module: Login as a admin, login as a student and login as a teacher.</li>
+	<li>Security: Due to use of Login system, only authorized person can access the system.</li>
+	<li>Multi-mode: Admin mode, Student Mode and Teacher Mode are available.</li>
+	<li>Operation: Use of CRUD operation in student and teacher information management.</li>
+</ul>
+</br></br><h3>1.3 Applications</h3>
+This project is made especially to every student who come to college to study different desired courses. There is need to record how many students has enrolled based on faculty chosen by them and record correct information. So, this project does all these operations easily and faster. It is online system, so people just need to internet to use this system. This system can be used in any college for maintaining student details, courses and faculty chosen by them and their personal information.
+</br>
+</div>
+  <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+  </br><h3>OVERVIEW:</h3>
+    Aryan School of Engineering and Management is located in Mid-Baneshwor, Kathmandu. It is affiliated with Purbanchal University and is offering BE in Civil Engineering, BCA, BIT, and BBA program. Faculties at ASEM are highly dedicated and qualified to standardize Engineering, IT, and management education. Students are provided with the world-class infrastructure that includes well-furnished and comfortable classrooms, ultra-modern Engineering Laboratories, and equipped library.
+
+    Aryan School of Engineering is the destination for contemporary engineering studies where student can pursue their carrier aspirations and enrich their future. ASEM adopts innovative teaching, along with a thriving research culture that inspires, challenge, and equips students with the knowledge and skills for success.
+    
+    Aryan School of Engineering and Management has excellent infrastructure matching contemporary international standards, such as tidily furnished classrooms, Audio Visual Training Aids, Workshops for demonstrating the functions of several instruments, besides acquainting them with the latest maintenance practices. 
+    
+    Aryan School of Management is offering a BBA program with affiliation from Purbanchal University. The School's main building and three other small buildings are equally spacious and well equipped with ultra-modern facilities. The college has several sports facilities such as basketball, table tennis, and badminton.
+    
+  </br></br><h3>Mission:</h3>
+    The mission of the Aryan School of Engineering and Management is to serve the nation, and the world by graduating talented, broadly educated engineers, technocrats & managers, conducting high-quality research, developing breakthrough technologies, and disseminating and preserving technical and managerial skills.
+    
+  </br></br><h3>Vision:</h3>
+    The vision of the Aryan School of Engineering and Management is to become a premier destination for Engineering, IT, and Management Studies and research in Nepal. We aim to produce graduates who will lead the industry and become successful citizens. Aryan School of Engineering and Management is committed to excelling in the field of Engineering, IT, and Management education. 
+    
+  </br></br><h3>Beliefs:</h3>
+    <ul>
+      <li>Academic excellence and freedom</li>
+      <li>Assessment and continuous improvement of ASEM's programs/processes</li>
+      <li>The success of students and seek to know them personally</li>
+      <li>Professional development of students</li>
+      <li>The personal and professional development of faculties and staff members</li>
+      <li>Diversity among students, faculties and staff members</li>
+    </ul>
+  </br></br><h3>SALIENT FEATURES:</h3>
+    <ul>
+      <li>State of the art infrastructure</li>
+      <li>Quality education and excellent results</li>
+      <li>Dedicated and full-time faculties</li>
+      <li>Frequent interaction with industry leaders and professionals</li>
+      <li>Scholarship available to meritorious students</li>
+      <li>Added courses offered to boost up technical and professional skills</li>
+      <li>Personality development and communication skill classes</li>
+      <li>Extracurricular activities</li>
+      <li> Well-equipped e-library with extensive learning resources</li>
+      <li>Research-based education</li>
+      <li>Book bank facility</li>
+      <li>Industrial visits and dissertation</li>
+      <li>Teaching and assessment</li>
+    </ul>
+  </div></br>
+  <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+    <!-- Header -->
+<header class="bg-primary text-center py-2 mb-4">
+  <div class="container">
+    <h1 class="fw-light text-white">Meet Our Team</h1>
+  </div>
+</header>
+
+<!-- Page Content -->
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <div class="card-counter primary">
-        <i class="fa fa-code-fork"></i>
-        <span class="count-numbers">120</span>
-        <span class="count-name">Students</span>
+    <!-- Team Member 1 -->
+    <div class="col-xl-4 col-md-4 mb-4">
+      <div class="card border-0 shadow">
+        <img src="{% static 'img/t1.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Ameer Sampang Rai</h5>
+          <div class="card-text text-black-50">Team Lead</div>
+        </div>
+      </div>
+    </div>
+    <!-- Team Member 2 -->
+    <div class="col-xl-4 col-md-4 mb-4">
+      <div class="card border-0 shadow">
+        <img src="{% static 'img/t2.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Krishna Kumar Khanw</h5>
+          <div class="card-text text-black-50">Vice Team Lead</div>
+        </div>
+      </div>
+    </div>
+    <!-- Team Member 3 -->
+    <div class="col-xl-4 col-md-4 mb-4">
+      <div class="card border-0 shadow">
+        <img src="{% static 'img/t3.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Kiran Sharma</h5>
+          <div class="card-text text-black-50">Member</div>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="card-counter danger">
-        <i class="fa fa-ticket"></i>
-        <span class="count-numbers">15>/span>
-        <span class="count-name">Teacher</span>
-      </div>
-    </div>
+  </div>
+  <!-- /.row -->
 
-    <div class="col-md-3">
-      <div class="card-counter success">
-        <i class="fa fa-database"></i>
-        <span class="count-numbers">1</span>
-        <span class="count-name">admin</span>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card-counter info">
-        <i class="fa fa-users"></i>
-        <span class="count-numbers">35</span>
-        <span class="count-name">Users</span>
-      </div>
-    </div>
+</div>
+<!-- /.container -->
+</br></br></br>
   </div>
 </div>
+<!-- Tabs content -->
+
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -115,3 +189,4 @@
 
 </body>
 </html>
+{% endblock content %}
