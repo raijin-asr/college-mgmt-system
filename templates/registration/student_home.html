@@ -202,6 +202,105 @@
         aria-labelledby="v-tabs-home-tab"
       >
     </br>
+
+    <div class="row">
+      <div class="col-md-10">
+      </br><hr>
+      <h2>List of Student Records</h2>
+      <hr>
+      <div class="pull-right">
+          <form class="form-inline d-flex" style="height:44px " method="POST" action="/student/search">
+          {% csrf_token %}
+          <input class="form-control me-4" type="text" placeholder="Search" name="student_name">
+          <button class="btn btn-outline-success me-4" type="submit">Search</button>
+          </form>
+      </div>
+      
+      <form class="form-inline d-flex" style="height:44px ">
+          {% csrf_token %}
+              <button class="btn btn-outline-danger me-2" type="button" style="height:44px;  width:168px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Student</button>
+          </form>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Create Assignment</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                  <div class="form-group">
+                      <label for="assignment-number" class="col-form-label">Assignment Number</label>
+                      <input type="text" class="form-control" id="assign_no">
+                  </div>
+                  <div class="form-group">
+                      <label for="topic" class="col-form-label">Topic</label>
+                      <textarea class="form-control" id="topic"></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="subject" class="col-form-label">Subject</label>
+                      <input type="text" class="form-control" id="subject">
+                  </div>
+                  <div class="form-group">
+                      <label for="date" class="col-form-label">Date</label>
+                      <input type="date" class="form-control" id="date">
+                  </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Create</button>
+              </div>
+              </div>
+          </div>
+          </div>
+
+      <table class="table table-striped table-hover table-bordered border-white .table-responsive">
+          <thead class="table-primary">
+          <tr>
+              <th scope="col">S.N</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Assignment No</th>
+              <th scope="col" colspan="2" class="text-center">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for assignment in  assignments %}
+              <tr>
+              <td>{{assignment.assig_id}}</td>
+              <td>{{assignment.full_name}}</td>
+              <td>{{assignment.assig_subject}}</td>
+              <td>{{assignment.assig_no}}</td>
+              <td><a href="/student/edit/{{student.student_id}}"><i style="font-size:18px; align:centre;" class="fa fa-edit fa-dark"></i></a></td>
+              <td><a href="/student/delete/{{student.student_id}}"><i style="font-size:18px; color:red;" class="fa fa-remove fa-solid"></i></a></td>
+              </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+      </div>
+  </div>
+  </br>
+  <nav aria-label="...">
+      <ul class="pagination justify-content-center align-items-center">
+      <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+      </li>
+      <li class="page-item active " aria-current="page">
+          <a class="page-link" href="#">1<span class="visually-hidden">(current)</span></a>
+      </li>
+      <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+      <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+      <li class="page-item">
+          <a class="page-link text-dark" href="#">Next</a>
+      </li>
+      </ul>
+  </nav>
+</div>
+
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Welcome <span class="text-dark">{{request.session.current_user.user_name}}</span></strong> to the Student Dashboard.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -210,7 +309,7 @@
       <div class="col-md-3">
         <div class="card-counter primary">
           <i class="fa fa-code-fork"></i>
-          <span class="count-numbers">120</span>
+          <span class="count-numbers">{{ student_count  }}</span>
           <span class="count-name">Students</span>
         </div>
       </div>
@@ -256,20 +355,36 @@
       
               <div class="card" style="border-radius: 15px;">
                 <div class="card-body">
-      
+                <form class="" method="POST" action="/student/submit_assignment">
+                    {% csrf_token %}
+
                   <div class="row align-items-center pt-4 pb-3">
                     <div class="col-md-3 ps-5">
       
-                      <h6 class="mb-0">Full name</h6>
+                      <h6 class="mb-0">Studnet name</h6>
       
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <input type="text" class="form-control form-control-lg" />
+                      <input type="text" id="full_name" name="full_name" class="form-control form-control-lg" />
       
                     </div>
                   </div>
       
+                  <hr class="mx-n3">
+      
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Question</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input type="text" id="assig_question" name="assig_question" class="form-control form-control-lg" placeholder="" />
+      
+                    </div>
+                  </div>
                   <hr class="mx-n3">
       
                   <div class="row align-items-center py-3">
@@ -278,16 +393,39 @@
                       <h6 class="mb-0">Subject</h6>
       
                     </div>
-                    <div class="col-md-9 pe-5">
+                    <div class="col-md-4">
       
-                      <input type="email" class="form-control form-control-lg" placeholder="" />
+                      <input type="text" id="assig_subject" name="assig_subject" class="form-control form-control-lg" placeholder="" />
       
                     </div>
+                    <div class="col-md-2 ps-5">
+      
+                        <h6 class="mb-0 text-center" style="width:86px;">Assignment No</h6>
+        
+                      </div>
+                      <div class="col-md-3 pe-5">
+        
+                        <input type="text" id="assig_no" name="assig_no" class="form-control form-control-lg" placeholder="" />
+        
+                      </div>
                   </div>
-      
+
                   <hr class="mx-n3">
-      
+                  
                   <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Answer</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <textarea class="form-control" id="assig_answer" name="assig_answer" rows="3" placeholder=""></textarea>
+      
+                    </div>
+                  </div> 
+      
+                  {% comment %} <div class="row align-items-center py-3">
                     <div class="col-md-3 ps-5">
       
                       <h6 class="mb-0" style="width:100px;">Upload Assignment</h6>
@@ -300,14 +438,14 @@
                         size 50 MB</div>
       
                     </div>
-                  </div>
+                  </div> {% endcomment %}
       
                   <hr class="mx-n3">
       
                   <div class="px-5 py-4 text-center">
                     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                   </div>
-      
+                </form>
                 </div>
               </div>
       
@@ -384,7 +522,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <textarea class="form-control" rows="3" placeholder="Message sent to the employer"></textarea>
+                      <textarea class="form-control" rows="3" placeholder=""></textarea>
       
                     </div>
                   </div> 
@@ -392,7 +530,7 @@
                   <hr class="mx-n3">
       
                   <div class="px-5 py-4 text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-danger btn-lg">Submit</button>
                   </div>
       
                 </div>
