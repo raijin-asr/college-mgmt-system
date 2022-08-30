@@ -22,7 +22,8 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('',include('registration.urls')),
     path('',include('user_mgmt.urls')),
-    path('about',views.about,name='about'),
+    path('about_home',views.about_home,name='about_home'),
+    path('about_admin',views.about_admin,name='about_admin'),
     path('contact',views.contact,name='contact'),
     path('admin_home',views.admin_home,name='admin_home'),
 ]
