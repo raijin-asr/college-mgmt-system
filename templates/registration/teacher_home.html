@@ -106,7 +106,7 @@
         <span class="navbar-toggler-icon">  <img  height="20px" src="{% static 'img/menu.png' %}" /></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      </br><a class="navbar-brand" href="/student/list">
+      </br><a class="navbar-brand" href="/teacher/home">
             <img src="{% static 'img/logo1.png' %}"  class="me-2" height="50" alt="CMS Logo" style="margin-left:20px;"/></a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center" style="margin-left:22px;">
                 <li class="nav-item"></li>
@@ -159,7 +159,7 @@
         aria-selected="false"
         ><i style="font-size:20px; margin:7px" class="fa fa-clipboard fa-dark"></i>Manage Assignment</a
       >
-      <a
+      {% comment %} <a
         class="nav-link"
         id="v-tabs-messages-tab"
         data-toggle="tab"
@@ -168,7 +168,7 @@
         aria-controls="v-tabs-messages"
         aria-selected="false"
         ><i style="font-size:20px; margin:7px" class="fa fa-suitcase fa-dark"></i>Apply for Leave</a
-      >
+      > {% endcomment %}
       <a
         class="nav-link"
         id="v-tabs-messages-tab"
@@ -203,14 +203,14 @@
       >
     </br>
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Welcome <span class="text-dark">{{request.session.current_user.user_name}}</span></strong> to the Teacher Dashboard.
+    <strong>Welcome <span class="text-dark">{{request.session.current_user.user_name}}</span></strong> to the TEACHER Dashboard.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <div class="row">
       <div class="col-md-3">
         <div class="card-counter primary">
           <i class="fa fa-code-fork"></i>
-          <span class="count-numbers">120</span>
+          <span class="count-numbers">{{ student_count  }}</span>
           <span class="count-name">Students</span>
         </div>
       </div>
@@ -218,7 +218,7 @@
       <div class="col-md-3">
         <div class="card-counter danger">
           <i class="fa fa-ticket"></i>
-          <span class="count-numbers">15</span>
+          <span class="count-numbers">{{ teacher_count  }}</span>
           <span class="count-name">Teacher</span>
         </div>
       </div>
@@ -249,14 +249,14 @@
       >
   
         <div class="row">
-            <div class="col-md-10">
+          <div class="col-md-10">
             </br><hr>
-            <h2>List of Student Records</h2>
+            <h2>List of Assignments Submitted by Student</h2>
             <hr>
             <div class="pull-right">
-                <form class="form-inline d-flex" style="height:44px " method="POST" action="/student/search">
+                <form class="form-inline d-flex" style="height:44px " method="POST" action="/teacher/search_tassignment">
                 {% csrf_token %}
-                <input class="form-control me-4" type="text" placeholder="Search" name="student_name">
+                <input class="form-control me-4" type="text" placeholder="Search" name="tassig_subject">
                 <button class="btn btn-outline-success me-4" type="submit">Search</button>
                 </form>
             </div>
@@ -266,7 +266,7 @@
                     <button class="btn btn-outline-danger me-2" type="button" style="height:44px;  width:168px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Student</button>
                 </form>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -275,64 +275,83 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form class="" method="POST" action="/teacher/create_assignment">
                     <div class="modal-body">
-                        <form>
-                        <div class="form-group">
+                        {% csrf_token %}                       
+                         <div class="form-group">
                             <label for="assignment-number" class="col-form-label">Assignment Number</label>
-                            <input type="text" class="form-control" id="assign_no">
+                            <input type="text" class="form-control" id="tassig_no" name="tassig_no">
                         </div>
                         <div class="form-group">
-                            <label for="topic" class="col-form-label">Topic</label>
-                            <textarea class="form-control" id="topic"></textarea>
+                            <label for="topic" class="col-form-label">Question</label>
+                            <textarea class="form-control" id="tassig_question" name="tassig_question"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="subject" class="col-form-label">Subject</label>
-                            <input type="text" class="form-control" id="subject">
+                            <input type="text" class="form-control" id="tassig_subject" name="tassig_subject">
                         </div>
                         <div class="form-group">
                             <label for="date" class="col-form-label">Date</label>
-                            <input type="date" class="form-control" id="date">
+                            <input type="date" class="form-control" id="tassig_date" name="tassig_date">
                         </div>
-                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                     </div>
+                  </form>
                     </div>
                 </div>
-                </div>
-
+              </div>
+              </br>
             <table class="table table-striped table-hover table-bordered border-white .table-responsive">
                 <thead class="table-primary">
-                <tr>
+                  <tr>
                     <th scope="col">S.N</th>
-                    <th scope="col">Full Name</th>
-                    <th scope="col">Roll No</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Faculty</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Assignment No</th>
+                    <th scope="col">Deadline</th>
                     <th scope="col" colspan="2" class="text-center">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for student in  students %}
+                {% for tassignment in  tassignments %}
                     <tr>
-                    <td>{{student.student_id}}</td>
-                    <td>{{student.student_name}}</td>
-                    <td>{{student.roll_no}}</td>
-                    <td>{{student.gender}}</td>
-                    <td>{{student.faculty}}</td>
-                    <td><a href="/student/edit/{{student.student_id}}"><i style="font-size:18px; align:centre;" class="fa fa-edit fa-dark"></i></a></td>
-                    <td><a href="/student/delete/{{student.student_id}}"><i style="font-size:18px; color:red;" class="fa fa-remove fa-solid"></i></a></td>
-                    </tr>
+                    <td>{{tassignment.tassig_id}}</td>
+                    <td>{{tassignment.tassig_subject}}</td>
+                    <td>{{tassignment.tassig_no}}</td>
+                    <td>{{tassignment.tassig_date}}</td>
+                    <td><a href="" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo"><i style="font-size:18px; align:centre;" class="fa fa-eye fa-dark"></i></a></td>
+                  </tr>
                 {% endfor %}
                 </tbody>
             </table>
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel2">Assignment Details</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    {% comment %} {% if assignment.assig_id in assignments %} {% endcomment %}
+                    {% for assignment in  assignments %}
+                    <h6>Assignment Question: </h6> <p>{{assignment.assig_question}}</p>
+                    {% endfor %}
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                  </div>
+              </div>
             </div>
+          </div>
         </div>
         </br>
         <nav aria-label="...">
-            <ul class="pagination justify-content-center align-items-center">
+            <ul class="pagination">
             <li class="page-item disabled">
                 <a class="page-link">Previous</a>
             </li>
@@ -353,7 +372,7 @@
         role="tabpanel"
         aria-labelledby="v-tabs-messages-tab"
       ></br>
-      <section class="vh-150" style="background-color: #ff5768;">
+      {% comment %} <section class="vh-150" style="background-color: #ff5768;">
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-9">
@@ -362,6 +381,8 @@
       
               <div class="card" style="border-radius: 15px;">
                 <div class="card-body">
+                <form class="px-md-2" method="POST" action="/student/add">
+                    {% csrf_token %}
       
                   <div class="row align-items-center pt-4 pb-3">
                     <div class="col-md-3 ps-5">
@@ -371,7 +392,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <input type="text" id="" name="" class="form-control form-control-lg" />
+                      <input type="text" id="t_leave_name" name="t_leave_name" class="form-control form-control-lg" />
       
                     </div>
                   </div>
@@ -386,7 +407,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <input type="email" class="form-control form-control-lg" placeholder="" />
+                      <input type="text" id="t_leave_type" name="t_leave_type" class="form-control form-control-lg" placeholder="" />
       
                     </div>
                   </div>
@@ -400,7 +421,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <input type="email" class="form-control form-control-lg" placeholder="" />
+                      <input type="text" id="t_leave_days" name="t_leave_days" class="form-control form-control-lg" placeholder="" />
       
                     </div>
                   </div>
@@ -415,7 +436,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <textarea class="form-control" rows="3" placeholder=""></textarea>
+                      <textarea class="form-control" id="t_leave_reason" name="t_leave_reason" rows="3" placeholder=""></textarea>
       
                     </div>
                   </div> 
@@ -425,14 +446,14 @@
                   <div class="px-5 py-4 text-center">
                     <button type="submit" class="btn btn-danger btn-lg">Submit</button>
                   </div>
-      
+                </form>
                 </div>
               </div>
       
             </div>
           </div>
         </div>
-      </section>
+      </section> {% endcomment %}
       </div>
       <div
         class="tab-pane fade"

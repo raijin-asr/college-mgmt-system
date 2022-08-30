@@ -8,6 +8,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 
@@ -106,7 +107,7 @@
         <span class="navbar-toggler-icon">  <img  height="20px" src="{% static 'img/menu.png' %}" /></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      </br><a class="navbar-brand" href="/student/list">
+      </br><a class="navbar-brand" href="/student/home">
             <img src="{% static 'img/logo1.png' %}"  class="me-2" height="50" alt="CMS Logo" style="margin-left:20px;"/></a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center" style="margin-left:22px;">
                 <li class="nav-item"></li>
@@ -115,7 +116,7 @@
             <h1 class="fw-light text-white text-center navbar-center">Student Dashboard</h1>
        
 
-       <li class="d-flex nav-item dropdown">
+      <li class="d-flex nav-item dropdown">
         <button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-light nav-link dropdown-toggle" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">  
           <i style="font-size:20px;" class="fa fa-user fa-dark"></i>
           <span class="text-dark">{{request.session.current_user.user_name}}</span></button>
@@ -159,7 +160,7 @@
         aria-selected="false"
         ><i style="font-size:20px; margin:7px" class="fa fa-clipboard fa-dark"></i>Assignment</a
       >
-      <a
+      {% comment %} <a
         class="nav-link"
         id="v-tabs-messages-tab"
         data-toggle="tab"
@@ -168,7 +169,7 @@
         aria-controls="v-tabs-messages"
         aria-selected="false"
         ><i style="font-size:20px; margin:7px" class="fa fa-suitcase fa-dark"></i>Apply for Leave</a
-      >
+      > {% endcomment %}
       <a
         class="nav-link"
         id="v-tabs-messages-tab"
@@ -202,62 +203,29 @@
         aria-labelledby="v-tabs-home-tab"
       >
     </br>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Welcome <span class="text-dark">{{request.session.current_user.user_name}}</span></strong> to the Student Dashboard.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 
     <div class="row">
       <div class="col-md-10">
-      </br><hr>
-      <h2>List of Student Records</h2>
+      <hr>
+      <h2>List of Assignments Submitted</h2>
       <hr>
       <div class="pull-right">
-          <form class="form-inline d-flex" style="height:44px " method="POST" action="/student/search">
+          <form class="form-inline d-flex" style="height:44px " method="POST" action="/student/search_assignment">
           {% csrf_token %}
-          <input class="form-control me-4" type="text" placeholder="Search" name="student_name">
+          <input class="form-control me-4" type="text" placeholder="Search" name="assig_subject">
           <button class="btn btn-outline-success me-4" type="submit">Search</button>
           </form>
       </div>
       
       <form class="form-inline d-flex" style="height:44px ">
           {% csrf_token %}
-              <button class="btn btn-outline-danger me-2" type="button" style="height:44px;  width:168px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Student</button>
           </form>
 
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Create Assignment</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                  <form>
-                  <div class="form-group">
-                      <label for="assignment-number" class="col-form-label">Assignment Number</label>
-                      <input type="text" class="form-control" id="assign_no">
-                  </div>
-                  <div class="form-group">
-                      <label for="topic" class="col-form-label">Topic</label>
-                      <textarea class="form-control" id="topic"></textarea>
-                  </div>
-                  <div class="form-group">
-                      <label for="subject" class="col-form-label">Subject</label>
-                      <input type="text" class="form-control" id="subject">
-                  </div>
-                  <div class="form-group">
-                      <label for="date" class="col-form-label">Date</label>
-                      <input type="date" class="form-control" id="date">
-                  </div>
-                  </form>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Create</button>
-              </div>
-              </div>
-          </div>
-          </div>
-
+        </br>
       <table class="table table-striped table-hover table-bordered border-white .table-responsive">
           <thead class="table-primary">
           <tr>
@@ -275,17 +243,37 @@
               <td>{{assignment.full_name}}</td>
               <td>{{assignment.assig_subject}}</td>
               <td>{{assignment.assig_no}}</td>
-              <td><a href="/student/edit/{{student.student_id}}"><i style="font-size:18px; align:centre;" class="fa fa-edit fa-dark"></i></a></td>
-              <td><a href="/student/delete/{{student.student_id}}"><i style="font-size:18px; color:red;" class="fa fa-remove fa-solid"></i></a></td>
+              <td><a href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i style="font-size:18px; align:centre;" class="fa fa-eye fa-dark"></i></a></td>
               </tr>
           {% endfor %}
           </tbody>
       </table>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Assignment Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              {% comment %} {% if assignment.assig_id in assignments %} {% endcomment %}
+              {% for assignment in  assignments %}
+              <h6>Assignment Question: </h6> <p>{{assignment.assig_question}}</p>
+              {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
       </div>
+    </div>
   </div>
   </br>
   <nav aria-label="...">
-      <ul class="pagination justify-content-center align-items-center">
+      <ul class="pagination ">
       <li class="page-item disabled">
           <a class="page-link">Previous</a>
       </li>
@@ -301,45 +289,7 @@
   </nav>
 </div>
 
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Welcome <span class="text-dark">{{request.session.current_user.user_name}}</span></strong> to the Student Dashboard.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  <div class="row">
-      <div class="col-md-3">
-        <div class="card-counter primary">
-          <i class="fa fa-code-fork"></i>
-          <span class="count-numbers">{{ student_count  }}</span>
-          <span class="count-name">Students</span>
-        </div>
-      </div>
-  
-      <div class="col-md-3">
-        <div class="card-counter danger">
-          <i class="fa fa-ticket"></i>
-          <span class="count-numbers">15</span>
-          <span class="count-name">Teacher</span>
-        </div>
-      </div>
-  
-      <div class="col-md-3">
-        <div class="card-counter success">
-          <i class="fa fa-database"></i>
-          <span class="count-numbers">1</span>
-          <span class="count-name">admin</span>
-        </div>
-      </div>
-  
-      <div class="col-md-3">
-        <div class="card-counter info">
-          <i class="fa fa-users"></i>
-          <span class="count-numbers">135</span>
-          <span class="count-name">Users</span>
-        </div>
-      </div>
-    </div>
-    
-      </div>
+ 
       <div
         class="tab-pane fade"
         id="v-tabs-profile"
@@ -460,7 +410,7 @@
         role="tabpanel"
         aria-labelledby="v-tabs-messages-tab"
       ></br>
-      <section class="vh-150" style="background-color: #ff5768;">
+      {% comment %} <section class="vh-150" style="background-color: #ff5768;">
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-9">
@@ -469,7 +419,9 @@
       
               <div class="card" style="border-radius: 15px;">
                 <div class="card-body">
-      
+                <form class="px-md-2" method="POST" action="/student/add">
+                    {% csrf_token %}
+
                   <div class="row align-items-center pt-4 pb-3">
                     <div class="col-md-3 ps-5">
       
@@ -478,7 +430,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <input type="text" class="form-control form-control-lg" />
+                      <input type="text" id="s_leave_name" name="s_leave_name" class="form-control form-control-lg" />
       
                     </div>
                   </div>
@@ -493,7 +445,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <input type="email" class="form-control form-control-lg" placeholder="" />
+                      <input type="text" id="s_leave_type" name="s_leave_type"  class="form-control form-control-lg" placeholder="" />
       
                     </div>
                   </div>
@@ -507,7 +459,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <input type="email" class="form-control form-control-lg" placeholder="" />
+                      <input type="text" id="s_leave_days" name="s_leave_days"  class="form-control form-control-lg" placeholder="" />
       
                     </div>
                   </div>
@@ -522,7 +474,7 @@
                     </div>
                     <div class="col-md-9 pe-5">
       
-                      <textarea class="form-control" rows="3" placeholder=""></textarea>
+                      <textarea class="form-control" id="s_leave_reason" name="s_leave_reason"  rows="3" placeholder=""></textarea>
       
                     </div>
                   </div> 
@@ -532,14 +484,14 @@
                   <div class="px-5 py-4 text-center">
                     <button type="submit" class="btn btn-danger btn-lg">Submit</button>
                   </div>
-      
+                </form>
                 </div>
               </div>
       
             </div>
           </div>
         </div>
-      </section>
+      </section> {% endcomment %}
       </div>
       <div
         class="tab-pane fade"
