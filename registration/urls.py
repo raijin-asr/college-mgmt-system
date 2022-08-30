@@ -1,6 +1,8 @@
 from django.urls import path
-from registration.views import StudentListView, StudentAddView, StudentEditView, StudentDeleteView, StudentSearchView, StudentHomeView, StudentAssigAddView,StudentAssigListView
-from registration.teacher_views import TeacherListView, TeacherAddView, TeacherEditView, TeacherDeleteView,TeacherSearchView,TeacherHomeView
+from registration.views import (StudentListView, StudentAddView, StudentEditView, StudentDeleteView, StudentSearchView,
+    StudentHomeView, StudentAssigSubmitView,StudentAssigListView,StudentAssigSearchView)
+from registration.teacher_views import (TeacherListView, TeacherAddView, TeacherEditView, TeacherDeleteView,TeacherSearchView,
+    TeacherHomeView,TeacherAssigCreateView,TeacherAssigSubmittedView,TeacherAssigSearchView)
 from registration.course_views import CourseListView, CourseAddView, CourseEditView, CourseDeleteView, CourseSearchView
 
 
@@ -13,8 +15,11 @@ urlpatterns = [
     path('student/edit', StudentEditView.as_view(), name="StudentEditPost"),
     path('student/delete/<student_id>',StudentDeleteView.as_view(), name="StudentDelete"),
     path('student/search',StudentSearchView.as_view(), name="StudentSearch"),
-    path('student/submit_assignment',StudentAssigAddView.as_view(), name="StudentSubmitAssignment"),
+    path('student/submit_assignment',StudentAssigSubmitView.as_view(), name="StudentSubmitAssignment"),
     path('student/todo_assignment',StudentAssigListView.as_view(), name="StudentTodoAssignment"),
+    path('student/search_assigment',StudentAssigSearchView.as_view(), name="StudentSearchAssignment"),
+    # path('student/s_submit_leave',StudentSubmitLeaveView.as_view(), name="StudentSubmitLeave"),
+    # path('student/s_list_leave',StudentListLeaveView.as_view(), name="StudentListLeave"),
 
 
     #teacher url
@@ -25,6 +30,11 @@ urlpatterns = [
     path('teacher/edit', TeacherEditView.as_view(), name="TeacherEditPost"),
     path('teacher/delete/<teacher_id>',TeacherDeleteView.as_view(), name="TeacherDelete"),
     path('teacher/search',TeacherSearchView.as_view(), name="TeacherSearch"),
+    path('teacher/create_assignment',TeacherAssigCreateView.as_view(), name="TeacherCreateAssignment"),
+    path('teacher/submitted_assignment',TeacherAssigSubmittedView.as_view(), name="TeacherSubmittedAssignment"),
+    path('teacher/search_tassignment',TeacherAssigSearchView.as_view(), name="TeacherSearchAssignment"),
+    # path('teacher/t_submit_leave',TeacherSubmitLeaveView.as_view(), name="TeacherSubmitLeave"),
+    # path('teacher/t_list_leave',TeacherListLeaveView.as_view(), name="TeacherListLeave"),
 
 
     #course url

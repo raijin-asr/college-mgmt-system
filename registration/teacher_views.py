@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
-from django.views.generic import View, ListView
-from . models import Teacher
+from django.views.generic import View
+from . models import Teacher, T_Assignment
 from college_mgmt import auth_required
 
 # Create your views here.
 class TeacherHomeView(View):
     @auth_required
     def get(self, request, *args, **kwargs):
+        context={ 
+            "teacher_count": Teacher.objects.count()
+        }
         return render(request, "registration/teacher_home.html")
 
 class TeacherListView(View):
@@ -78,3 +81,67 @@ class TeacherSearchView(View):
         }
         return render(request, "registration/teacher_list.html", context)
 
+# Assignment views of Teacher
+class TeacherAssigSubmittedView(View):
+    @auth_required
+    def get(self, request):
+        tassignments=T_Assignment.objects.all()
+        context = {
+            "tassignments" : tassignments,
+        }
+        return render(request, "registration/teacher_home.html", context)
+        
+class TeacherAssigCreateView(View):
+    @auth_required
+    def get(self, request, *args, **kwargs):
+        return render(request, "registration/teacher_home.html")
+
+    @auth_required
+    def post(self, request, *args, **kwargs):
+        data = {
+            "tassig_no": request.POST.get("tassig_no"),
+            "tassig_question": request.POST.get("tassig_question"),
+            "tassig_subject": request.POST.get("tassig_subject"),
+            "tassig_date": request.POST.get("tassig_date"),
+        } 
+        tassignment=T_Assignment.objects.create(**data)
+        tassignment.save()
+        return redirect('/teacher/submitted_assignment')
+
+class TeacherAssigSearchView(View):
+    @auth_required
+    def post(self, request, *args, **kwargs):
+        tassig_subject = request.POST.get("tassig_subject", None)
+        result = T_Assignment.objects.filter(tassig_subject__icontains = tassig_subject)
+        context = {
+            "tassignments" : result,
+        }
+        return render(request, "registration/teacher_home.html", context)
+
+# Apply for Leave views of Teacher
+# class TeacherSubmitLeaveView(View):
+#     @auth_required
+#     def get(self, request, *args, **kwargs):
+#         return render(request, "registration/teacher_home.html")
+
+#     @auth_required
+#     def post(self, request, *args, **kwargs):
+#         data = {
+#             "t_leave_name": request.POST.get("t_leave_name"),
+#             "t_leave_type": request.POST.get("t_leave_type"),
+#             "t_leave_days": request.POST.get("t_leave_days"),
+#             "t_leave_reason": request.POST.get("t_leave_reason"),
+#         } 
+#         t_leave=T_Leave.objects.create(**data)
+#         t_leave.save()
+#         return redirect('/teacher/t_list_leave')
+
+
+# class TeacherListLeaveView(View):
+#     @auth_required
+#     def get(self, request):
+#         t_leaves=T_Leave.objects.all()
+#         context = {
+#             "teacher_leaves" : t_leaves,
+#         }
+#         return render(request, "registration/teacher_home.html", context)
