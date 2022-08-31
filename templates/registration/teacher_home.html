@@ -116,13 +116,11 @@
        
 
        <li class="d-flex nav-item dropdown">
-        <button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-light nav-link dropdown-toggle" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">  
+        <button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn nav-link">  
           <i style="font-size:20px;" class="fa fa-user fa-dark"></i>
           <span class="text-dark">{{request.session.current_user.user_name}}</span></button>
-        <ul class="dropdown-menu bg-white" aria-labelledby="navbarDropdown" style="left:-4px;">
-          <li><a class="dropdown-item" href="/logout">Logout</a></li>
-
-        </ul>
+          <a href="/logout"><button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-light nav-link">  
+            <span class="text-dark">Logout</span></button></a>
       </li>  
         
       </div>
@@ -139,7 +137,7 @@
       role="tablist"
       aria-orientation="vertical"
     >
-      <a
+      {% comment %} <a
         class="nav-link active"
         id="v-tabs-home-tab"
         data-toggle="tab"
@@ -148,9 +146,9 @@
         aria-controls="v-tabs-home"
         aria-selected="true"
         ><i style="font-size:20px; margin:5px" class="fa fa-home fa-dark"></i>Home</a
-      >
+      > {% endcomment %}
       <a
-        class="nav-link"
+        class="nav-link active"
         id="v-tabs-profile-tab"
         data-toggle="tab"
         href="#v-tabs-profile"
@@ -195,12 +193,12 @@
   <div class="col-9 right-content">
     <!-- Tab content -->
     <div class="tab-content" id="v-tabs-tabContent">
-      <div
+      {% comment %} <div
         class="tab-pane fade show active"
         id="v-tabs-home"
         role="tabpanel"
-        aria-labelledby="v-tabs-home-tab"
-      >
+        aria-labelledby="v-tabs-home-tab"> {% endcomment %}
+      {% comment %} 
     </br>
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Welcome <span class="text-dark">{{request.session.current_user.user_name}}</span></strong> to the TEACHER Dashboard.
@@ -234,43 +232,48 @@
       <div class="col-md-3">
         <div class="card-counter info">
           <i class="fa fa-users"></i>
-          <span class="count-numbers">135</span>
+          <span class="count-numbers">{{ user_count  }}</span>
           <span class="count-name">Users</span>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
     
-      </div>
+      {% comment %} </div> {% endcomment %}
+      
       <div
-        class="tab-pane fade"
+        class="tab-pane fade show active"
         id="v-tabs-profile"
         role="tabpanel"
         aria-labelledby="v-tabs-profile-tab"
       >
-  
+        </br>
         <div class="row">
           <div class="col-md-10">
-            </br><hr>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Welcome <span class="text-dark">{{request.session.current_user.user_name}}</span></strong> to the TEACHER Dashboard.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <hr>
             <h2>List of Assignments Submitted by Student</h2>
             <hr>
             <div class="pull-right">
-                <form class="form-inline d-flex" style="height:44px " method="POST" action="/teacher/search_tassignment">
+                <form class="form-inline d-flex" style="height:44px " method="POST" action="/student/search_assigment">
                 {% csrf_token %}
-                <input class="form-control me-4" type="text" placeholder="Search" name="tassig_subject">
+                <input class="form-control me-4" type="text" placeholder="Search" name="assig_subject">
                 <button class="btn btn-outline-success me-4" type="submit">Search</button>
                 </form>
             </div>
             
             <form class="form-inline d-flex" style="height:44px ">
                 {% csrf_token %}
-                    <button class="btn btn-outline-danger me-2" type="button" style="height:44px;  width:168px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Student</button>
+                <button class="btn btn-outline-danger me-2" type="button" style="height:50px;  width:178px;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create Assigmnment</button>
                 </form>
 
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Assignment</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Create New Assignment</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -291,7 +294,7 @@
                             <input type="text" class="form-control" id="tassig_subject" name="tassig_subject">
                         </div>
                         <div class="form-group">
-                            <label for="date" class="col-form-label">Date</label>
+                            <label for="date" class="col-form-label">Deadline</label>
                             <input type="date" class="form-control" id="tassig_date" name="tassig_date">
                         </div>
                     </div>
@@ -308,25 +311,27 @@
                 <thead class="table-primary">
                   <tr>
                     <th scope="col">S.N</th>
-                    <th scope="col">Subject</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Subject No</th>
                     <th scope="col">Assignment No</th>
-                    <th scope="col">Deadline</th>
                     <th scope="col" colspan="2" class="text-center">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for tassignment in  tassignments %}
+                {% for assignment in  assignments %}
                     <tr>
-                    <td>{{tassignment.tassig_id}}</td>
-                    <td>{{tassignment.tassig_subject}}</td>
-                    <td>{{tassignment.tassig_no}}</td>
-                    <td>{{tassignment.tassig_date}}</td>
-                    <td><a href="" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo"><i style="font-size:18px; align:centre;" class="fa fa-eye fa-dark"></i></a></td>
+                    <td>{{assignment.assig_id}}</td>
+                    <td>{{assignment.full_name}}</td>
+                    <td>{{assignment.assig_subject}}</td>
+                    <td>{{assignment.assig_no}}</td>
+                    {% comment %} <td><a href="" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo" onclick='alert("{{assignment.assig_question}}");'><i style="font-size:18px; align:centre;" class="fa fa-eye fa-dark"></i></a></td> {% endcomment %}
+                    <td><a href="#" onclick='alert("Question: {{assignment.assig_question}}\nAnswer: {{assignment.assig_answer}}");'>
+                      <i style="font-size:18px; align:centre;" class="fa fa-eye fa-dark"></i></a></td>
                   </tr>
                 {% endfor %}
                 </tbody>
             </table>
-            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            {% comment %} <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                   <div class="modal-header">
@@ -337,34 +342,20 @@
                   </div>
                   <div class="modal-body">
                     {% comment %} {% if assignment.assig_id in assignments %} {% endcomment %}
-                    {% for assignment in  assignments %}
-                    <h6>Assignment Question: </h6> <p>{{assignment.assig_question}}</p>
-                    {% endfor %}
-                  </div>
+                    {% comment %} {% for tassignment in  tassignments %} {% endcomment %}
+                    {% comment %} <h6>Assignment Question: </h6> <p>{{tassignment.tassig_question}}</p> {% endcomment %}
+                    {% comment %} {% endfor %} {% endcomment %}
+                  {% comment %} </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   </div>
                   </div>
               </div>
-            </div>
+            </div> {% endcomment %} 
           </div>
         </div>
         </br>
-        <nav aria-label="...">
-            <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link">Previous</a>
-            </li>
-            <li class="page-item active " aria-current="page">
-                <a class="page-link" href="#">1<span class="visually-hidden">(current)</span></a>
-            </li>
-            <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-            <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link text-dark" href="#">Next</a>
-            </li>
-            </ul>
-        </nav>
+   
     </div>
  <div
         class="tab-pane fade"

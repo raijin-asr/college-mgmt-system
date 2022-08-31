@@ -93,10 +93,11 @@
         height: 100vh !important;
         }
       }
-        h1.fw-light.text-white.text-center.navbar-center {
-            position: absolute;
-            left: 45%;
+      h1.fw-light.text-white.text-center.navbar-center {
+          position: absolute;
+          left: 45%;
       }
+    
     </style>
   </head>
 <body>
@@ -115,17 +116,14 @@
        
             <h1 class="fw-light text-white text-center navbar-center">Student Dashboard</h1>
        
-
-      <li class="d-flex nav-item dropdown">
-        <button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-light nav-link dropdown-toggle" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">  
-          <i style="font-size:20px;" class="fa fa-user fa-dark"></i>
-          <span class="text-dark">{{request.session.current_user.user_name}}</span></button>
-        <ul class="dropdown-menu bg-white" aria-labelledby="navbarDropdown" style="left:-4px;">
-          <li><a class="dropdown-item" href="/logout">Logout</a></li>
-
-        </ul>
-      </li>  
-        
+            <li class="d-flex nav-item dropdown">
+              <button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn nav-link">  
+                <i style="font-size:20px;" class="fa fa-user fa-light"></i>
+                <span class="text-dark">{{request.session.current_user.user_name}}</span></button>
+                <a href="/logout"><button style="margin-left: 24px; padding: 6px; height:39px; width: 120px;" type="button" class="btn btn-outline-light nav-link">  
+                  
+                  <span class="text-dark">Logout</span></button></a>
+            </li> 
       </div>
     </div>
   </nav>
@@ -203,20 +201,19 @@
         aria-labelledby="v-tabs-home-tab"
       >
     </br>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>Welcome <span class="text-dark">{{request.session.current_user.user_name}}</span></strong> to the Student Dashboard.
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
     <div class="row">
       <div class="col-md-10">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <marquee><strong>Welcome <span class="text-dark">{{request.session.current_user.user_name}}</span></strong> to the Student Dashboard.</marquee>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
       <hr>
       <h2>List of Assignments Submitted</h2>
       <hr>
       <div class="pull-right">
-          <form class="form-inline d-flex" style="height:44px " method="POST" action="/student/search_assignment">
+          <form class="form-inline d-flex" style="height:44px " method="POST" action="/teacher/search_tassignment">
           {% csrf_token %}
-          <input class="form-control me-4" type="text" placeholder="Search" name="assig_subject">
+          <input class="form-control me-4" type="text" placeholder="Search" name="tassig_subject">
           <button class="btn btn-outline-success me-4" type="submit">Search</button>
           </form>
       </div>
@@ -237,14 +234,16 @@
           </tr>
           </thead>
           <tbody>
-          {% for assignment in  assignments %}
-              <tr>
-              <td>{{assignment.assig_id}}</td>
-              <td>{{assignment.full_name}}</td>
-              <td>{{assignment.assig_subject}}</td>
-              <td>{{assignment.assig_no}}</td>
-              <td><a href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i style="font-size:18px; align:centre;" class="fa fa-eye fa-dark"></i></a></td>
-              </tr>
+          {% for tassignment in  tassignments %}
+            <tr>
+              <td>{{tassignment.tassig_id}}</td>
+              <td>{{tassignment.tassig_subject}}</td>
+              <td>{{tassignment.tassig_no}}</td>
+              <td>{{tassignment.tassig_date}}</td>
+              {% comment %} <td><a href="" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i style="font-size:18px; align:centre;" class="fa fa-eye fa-dark"></i></a></td> {% endcomment %}
+              <td><a href="#" onclick='alert("Question is: {{tassignment.tassig_question}}");'>
+                <i style="font-size:18px; align:centre;" class="fa fa-eye fa-dark"></i></a></td>
+            </tr>
           {% endfor %}
           </tbody>
       </table>
@@ -271,31 +270,16 @@
       </div>
     </div>
   </div>
-  </br>
-  <nav aria-label="...">
-      <ul class="pagination ">
-      <li class="page-item disabled">
-          <a class="page-link">Previous</a>
-      </li>
-      <li class="page-item active " aria-current="page">
-          <a class="page-link" href="#">1<span class="visually-hidden">(current)</span></a>
-      </li>
-      <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-      <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-      <li class="page-item">
-          <a class="page-link text-dark" href="#">Next</a>
-      </li>
-      </ul>
-  </nav>
-</div>
-
+</br>
  
+</div>
       <div
         class="tab-pane fade"
         id="v-tabs-profile"
         role="tabpanel"
         aria-labelledby="v-tabs-profile-tab"
       ></br>
+
       <section class="vh-100" style="background-color: #2779e2;">
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -307,7 +291,7 @@
                 <div class="card-body">
                 <form class="" method="POST" action="/student/submit_assignment">
                     {% csrf_token %}
-
+  
                   <div class="row align-items-center pt-4 pb-3">
                     <div class="col-md-3 ps-5">
       
@@ -359,7 +343,7 @@
         
                       </div>
                   </div>
-
+  
                   <hr class="mx-n3">
                   
                   <div class="row align-items-center py-3">
@@ -403,6 +387,7 @@
           </div>
         </div>
       </section>
+
       </div>
       <div
         class="tab-pane fade"
