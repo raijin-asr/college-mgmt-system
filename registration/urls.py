@@ -33,6 +33,8 @@ urlpatterns = [
     path('teacher/create_assignment',TeacherAssigCreateView.as_view(), name="TeacherCreateAssignment"),
     path('teacher/submitted_assignment',TeacherAssigSubmittedView.as_view(), name="TeacherSubmittedAssignment"),
     path('teacher/search_tassignment',TeacherAssigSearchView.as_view(), name="TeacherSearchAssignment"),
+    # path('teacher/show_assignment/<tassig_id>',TeacherAssignShowView.as_view(), name="TeacherShowGetAssignment"),
+    # path('teacher/show_tassignment',TeacherAssignShowView.as_view(), name="TeacherShowAssignment"),
     # path('teacher/t_submit_leave',TeacherSubmitLeaveView.as_view(), name="TeacherSubmitLeave"),
     # path('teacher/t_list_leave',TeacherListLeaveView.as_view(), name="TeacherListLeave"),
 

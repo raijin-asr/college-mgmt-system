@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from . models import Student, Assignment
+from . models import Student, Assignment, T_Assignment
 from college_mgmt import auth_required
 
 # Create your views here.
@@ -86,9 +86,9 @@ class StudentSearchView(View):
 class StudentAssigListView(View):
     @auth_required
     def get(self, request):
-        assignments=Assignment.objects.all()
+        tassignments=T_Assignment.objects.all()
         context = {
-            "assignments" : assignments,
+            "tassignments" : tassignments,
         }
         return render(request, "registration/student_home.html", context)
         
@@ -108,18 +108,22 @@ class StudentAssigSubmitView(View):
         } 
         assignment=Assignment.objects.create(**data)
         assignment.save()
-        return redirect('/student/todo_assignment')
+        redirect('/teacher/submitted_assignment')
+        return render(request, "registration/student_home.html")
 
 
 class StudentAssigSearchView(View):
     @auth_required
     def post(self, request, *args, **kwargs):
         assig_subject = request.POST.get("assig_subject", None)
-        result = Assignment.objects.filter(assig_subject__icontains = assig_subject)
+        if not assig_subject:
+            result=Assignment.objects.all()
+        else:   
+            result = Assignment.objects.filter(assig_subject__icontains = assig_subject)
         context = {
             "assignments" : result,
         }
-        return render(request, "registration/student_home.html", context)
+        return render(request, "registration/teacher_home.html", context)
 
 # Apply for Leave views of Student
 # class StudentSubmitLeaveView(View):
