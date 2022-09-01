@@ -112,7 +112,9 @@ class TeacherAssigCreateView(View):
         } 
         tassignment=T_Assignment.objects.create(**data)
         tassignment.save()
-        return redirect('/student/home')
+        redirect('/student/home')
+        return render(request, "registration/teacher_home.html")
+
 
 class TeacherAssigSearchView(View):
     @auth_required
@@ -125,6 +127,7 @@ class TeacherAssigSearchView(View):
         context = {
             "tassignments" : result,
         }
+        # redirect('/student/search_assignment')
         return render(request, "registration/student_home.html", context)
 
 # class TeacherAssignShowView(View):

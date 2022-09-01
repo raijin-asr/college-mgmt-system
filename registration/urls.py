@@ -17,7 +17,7 @@ urlpatterns = [
     path('student/search',StudentSearchView.as_view(), name="StudentSearch"),
     path('student/submit_assignment',StudentAssigSubmitView.as_view(), name="StudentSubmitAssignment"),
     path('student/todo_assignment',StudentAssigListView.as_view(), name="StudentTodoAssignment"),
-    path('student/search_assigment',StudentAssigSearchView.as_view(), name="StudentSearchAssignment"),
+    path('teacher/search_tassigment',StudentAssigSearchView.as_view(), name="StudentSearchAssignment"),
     # path('student/s_submit_leave',StudentSubmitLeaveView.as_view(), name="StudentSubmitLeave"),
     # path('student/s_list_leave',StudentListLeaveView.as_view(), name="StudentListLeave"),
 
@@ -32,7 +32,7 @@ urlpatterns = [
     path('teacher/search',TeacherSearchView.as_view(), name="TeacherSearch"),
     path('teacher/create_assignment',TeacherAssigCreateView.as_view(), name="TeacherCreateAssignment"),
     path('teacher/submitted_assignment',TeacherAssigSubmittedView.as_view(), name="TeacherSubmittedAssignment"),
-    path('teacher/search_tassignment',TeacherAssigSearchView.as_view(), name="TeacherSearchAssignment"),
+    path('student/search_assignment',TeacherAssigSearchView.as_view(), name="TeacherSearchAssignment"),
     # path('teacher/show_assignment/<tassig_id>',TeacherAssignShowView.as_view(), name="TeacherShowGetAssignment"),
     # path('teacher/show_tassignment',TeacherAssignShowView.as_view(), name="TeacherShowAssignment"),
     # path('teacher/t_submit_leave',TeacherSubmitLeaveView.as_view(), name="TeacherSubmitLeave"),

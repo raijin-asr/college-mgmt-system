@@ -123,7 +123,9 @@ class StudentAssigSearchView(View):
         context = {
             "assignments" : result,
         }
+        # redirect('/teacher/search_tassignment')
         return render(request, "registration/teacher_home.html", context)
+
 
 # Apply for Leave views of Student
 # class StudentSubmitLeaveView(View):
