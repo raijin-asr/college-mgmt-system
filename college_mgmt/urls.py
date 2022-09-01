@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from college_mgmt.views import AdminHomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,7 @@ urlpatterns = [
     path('about_home',views.about_home,name='about_home'),
     path('about_admin',views.about_admin,name='about_admin'),
     path('contact',views.contact,name='contact'),
-    path('admin_home',views.admin_home,name='admin_home'),
+    path('admin_home', AdminHomeView.as_view(), name="Admin_home"),
+
+
 ]
