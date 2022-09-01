@@ -6,6 +6,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>College Management System</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% comment %} <meta http-equiv="refresh" content="0;url=/student/search_assignment"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
@@ -109,7 +110,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       </br><a class="navbar-brand" href="/student/home">
-            <img src="{% static 'img/logo1.png' %}"  class="me-2" height="50" alt="CMS Logo" style="margin-left:20px;"/></a>
+            <img src="{% static 'img/logo1.png' %}"  class="me-2" height="50" alt="CMS Logo" style="margin-left:20px; border-radius:17%"/></a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center" style="margin-left:22px;">
                 <li class="nav-item"></li>
             </ul>
@@ -137,7 +138,11 @@
       id="v-tabs-tab"
       role="tablist"
       aria-orientation="vertical"
-    >
+    >    
+      <form class="form-inline d-flex" style="height:44px; position: absolute; top: 0; left: 166px; z-index:1; opacity:0.01;"  method="POST" action="/student/search_assignment">
+      {% csrf_token %}
+      <button class="btn btn-outline-success me-4" type="submit">Search</button>
+      </form>
       <a
         class="nav-link active"
         id="v-tabs-home-tab"
@@ -146,7 +151,7 @@
         role="tab"
         aria-controls="v-tabs-home"
         aria-selected="true"
-        ><i style="font-size:20px; margin:5px" class="fa fa-home fa-dark"></i>Home</a
+        ><i style="font-size:20px; margin:5px" class="fa fa-home fa-dark"></i>Assignment Given</a
       >
       <a
         class="nav-link"
@@ -156,7 +161,7 @@
         role="tab"
         aria-controls="v-tabs-profile"
         aria-selected="false"
-        ><i style="font-size:20px; margin:7px" class="fa fa-clipboard fa-dark"></i>Assignment</a
+        ><i style="font-size:20px; margin:7px" class="fa fa-clipboard fa-dark"></i>Submit Assignment</a
       >
       {% comment %} <a
         class="nav-link"
@@ -211,7 +216,7 @@
       <h2>List of Assignments Submitted</h2>
       <hr>
       <div class="pull-right">
-          <form class="form-inline d-flex" style="height:44px " method="POST" action="/teacher/search_tassignment">
+          <form class="form-inline d-flex" style="height:44px " onload="StudentAssigSearchView();" method="POST" action="/student/search_assignment">
           {% csrf_token %}
           <input class="form-control me-4" type="text" placeholder="Search" name="tassig_subject">
           <button class="btn btn-outline-success me-4" type="submit">Search</button>
@@ -227,9 +232,9 @@
           <thead class="table-primary">
           <tr>
               <th scope="col">S.N</th>
-              <th scope="col">Student Name</th>
               <th scope="col">Subject</th>
               <th scope="col">Assignment No</th>
+              <th scope="col">Deadline</th>
               <th scope="col" colspan="2" class="text-center">Action</th>
           </tr>
           </thead>
@@ -247,7 +252,7 @@
           {% endfor %}
           </tbody>
       </table>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      {% comment %} <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -258,16 +263,16 @@
             </div>
             <div class="modal-body">
               {% comment %} {% if assignment.assig_id in assignments %} {% endcomment %}
-              {% for assignment in  assignments %}
+              {% comment %} {% for assignment in  assignments %}
               <h6>Assignment Question: </h6> <p>{{assignment.assig_question}}</p>
-              {% endfor %}
-            </div>
+              {% endfor %} {% endcomment %}
+            {% comment %} </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
             </div>
         </div>
-      </div>
+      </div> {% endcomment %} 
     </div>
   </div>
 </br>

@@ -107,7 +107,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       </br><a class="navbar-brand" href="/teacher/home">
-            <img src="{% static 'img/logo1.png' %}"  class="me-2" height="50" alt="CMS Logo" style="margin-left:20px;"/></a>
+            <img src="{% static 'img/logo1.png' %}"  class="me-2" height="50" alt="CMS Logo" style="margin-left:20px; border-radius:17%"/></a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center" style="margin-left:22px;">
                 <li class="nav-item"></li>
             </ul>
@@ -137,6 +137,10 @@
       role="tablist"
       aria-orientation="vertical"
     >
+    <form class="form-inline d-flex" style="height:44px; position: absolute; top: 0; left: 166px; z-index:1; opacity:0.01;"  method="POST" action="/teacher/search_tassigment">
+      {% csrf_token %}
+      <button class="btn btn-outline-success me-4" type="submit">Search</button>
+      </form>
       {% comment %} <a
         class="nav-link active"
         id="v-tabs-home-tab"
@@ -257,7 +261,7 @@
             <h2>List of Assignments Submitted by Student</h2>
             <hr>
             <div class="pull-right">
-                <form class="form-inline d-flex" style="height:44px " method="POST" action="/student/search_assigment">
+                <form class="form-inline d-flex" style="height:44px " method="POST" action="/teacher/search_tassigment">
                 {% csrf_token %}
                 <input class="form-control me-4" type="text" placeholder="Search" name="assig_subject">
                 <button class="btn btn-outline-success me-4" type="submit">Search</button>
