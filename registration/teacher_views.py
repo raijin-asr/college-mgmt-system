@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from . models import Teacher, T_Assignment,Student, Assignment
+from . models import Teacher, T_Assignment,Student, Assignment,T_Leave
 from college_mgmt import auth_required
 from user_mgmt.models import User
 
@@ -127,7 +127,6 @@ class TeacherAssigSearchView(View):
         context = {
             "tassignments" : result,
         }
-        # redirect('/student/search_assignment')
         return render(request, "registration/student_home.html", context)
 
 # class TeacherAssignShowView(View):
@@ -143,29 +142,29 @@ class TeacherAssigSearchView(View):
 
 
 # Apply for Leave views of Teacher
-# class TeacherSubmitLeaveView(View):
-#     @auth_required
-#     def get(self, request, *args, **kwargs):
-#         return render(request, "registration/teacher_home.html")
+class TeacherSubmitLeaveView(View):
+    @auth_required
+    def get(self, request, *args, **kwargs):
+        return render(request, "registration/teacher_home.html")
 
-#     @auth_required
-#     def post(self, request, *args, **kwargs):
-#         data = {
-#             "t_leave_name": request.POST.get("t_leave_name"),
-#             "t_leave_type": request.POST.get("t_leave_type"),
-#             "t_leave_days": request.POST.get("t_leave_days"),
-#             "t_leave_reason": request.POST.get("t_leave_reason"),
-#         } 
-#         t_leave=T_Leave.objects.create(**data)
-#         t_leave.save()
-#         return redirect('/teacher/t_list_leave')
+    @auth_required
+    def post(self, request, *args, **kwargs):
+        data = {
+            "t_leave_name": request.POST.get("t_leave_name"),
+            "t_leave_type": request.POST.get("t_leave_type"),
+            "t_leave_days": request.POST.get("t_leave_days"),
+            "t_leave_reason": request.POST.get("t_leave_reason"),
+        } 
+        t_leave=T_Leave.objects.create(**data)
+        t_leave.save()
+        return redirect('/teacher/t_list_leave')
 
 
-# class TeacherListLeaveView(View):
-#     @auth_required
-#     def get(self, request):
-#         t_leaves=T_Leave.objects.all()
-#         context = {
-#             "teacher_leaves" : t_leaves,
-#         }
-#         return render(request, "registration/teacher_home.html", context)
+class TeacherListLeaveView(View):
+    @auth_required
+    def get(self, request):
+        t_leaves=T_Leave.objects.all()
+        context = {
+            "teacher_leaves" : t_leaves,
+        }
+        return render(request, "registration/teacher_home.html", context)

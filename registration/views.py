@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from . models import Student, Assignment, T_Assignment
+from . models import Student, Assignment, T_Assignment, S_Leave
 from college_mgmt import auth_required
 
 # Create your views here.
@@ -123,34 +123,33 @@ class StudentAssigSearchView(View):
         context = {
             "assignments" : result,
         }
-        # redirect('/teacher/search_tassignment')
         return render(request, "registration/teacher_home.html", context)
 
 
-# Apply for Leave views of Student
-# class StudentSubmitLeaveView(View):
-#     @auth_required
-#     def get(self, request, *args, **kwargs):
-#         return render(request, "registration/student_home.html")
+#Apply for Leave views of Student
+class StudentSubmitLeaveView(View):
+    @auth_required
+    def get(self, request, *args, **kwargs):
+        return render(request, "registration/student_home.html")
 
-#     @auth_required
-#     def post(self, request, *args, **kwargs):
-#         data = {
-#             "s_leave_name": request.POST.get("s_leave_name"),
-#             "s_leave_type": request.POST.get("s_leave_type"),
-#             "s_leave_days": request.POST.get("s_leave_days"),
-#             "s_leave_reason": request.POST.get("s_leave_reason"),
-#         } 
-#         s_leave=S_Leave.objects.create(**data)
-#         s_leave.save()
-#         return redirect('/student/s_list_assignment')
+    @auth_required
+    def post(self, request, *args, **kwargs):
+        data = {
+            "s_leave_name": request.POST.get("s_leave_name"),
+            "s_leave_type": request.POST.get("s_leave_type"),
+            "s_leave_days": request.POST.get("s_leave_days"),
+            "s_leave_reason": request.POST.get("s_leave_reason"),
+        } 
+        s_leave=S_Leave.objects.create(**data)
+        s_leave.save()
+        return redirect('/student/s_list_assignment')
 
 
-# class StudentListLeaveView(View):
-#     @auth_required
-#     def get(self, request):
-#         s_leaves=S_Leave.objects.all()
-#         context = {
-#             "student_leaves" : s_leaves,
-#         }
-#         return render(request, "registration/student_home.html", context)
+class StudentListLeaveView(View):
+    @auth_required
+    def get(self, request):
+        s_leaves=S_Leave.objects.all()
+        context = {
+            "student_leaves" : s_leaves,
+        }
+        return render(request, "registration/student_home.html", context)
