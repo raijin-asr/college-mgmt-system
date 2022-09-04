@@ -40,3 +40,9 @@
 ![login](https://user-images.githubusercontent.com/97660344/188319807-7442490f-6c62-4e8c-8113-15e8fff04872.PNG)
 <p>fig 3: Login Page </p></br>
 
+![student crud](https://user-images.githubusercontent.com/97660344/188322117-19fc54f8-bab9-406e-b463-dbd02b337435.PNG)
+<p>fig 4: Student Dashboard(CRUD Table) </p></br>
+
+![teacher crud](https://user-images.githubusercontent.com/97660344/188322143-35921543-af29-46e9-adcc-dfdf7e4cf72e.PNG)
+<p>fig 5: Teacher Dashboard(CRUD Table) Page </p></br>
+
