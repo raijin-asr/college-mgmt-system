@@ -41,8 +41,18 @@
 <p>fig 3: Login Page </p></br>
 
 ![student crud](https://user-images.githubusercontent.com/97660344/188322117-19fc54f8-bab9-406e-b463-dbd02b337435.PNG)
-<p>fig 4: Student Dashboard(CRUD Table) </p></br>
+<p>fig 4: Student CRUD Table in Admin Page </p></br>
 
 ![teacher crud](https://user-images.githubusercontent.com/97660344/188322143-35921543-af29-46e9-adcc-dfdf7e4cf72e.PNG)
-<p>fig 5: Teacher Dashboard(CRUD Table) Page </p></br>
+<p>fig 5: Teacher CRUD Table in Admin Page </p></br>
 
+![admin home](https://user-images.githubusercontent.com/97660344/188892602-ef081a69-0a44-4fce-93d1-fa2fc75b0849.PNG)
+<p>fig 6: Admin Home Page </p></br>
+
+![student dashboard](https://user-images.githubusercontent.com/97660344/188893032-1f19b2fb-bcaf-4a5e-a3fb-8b70f2ae71b4.PNG)
+<p>fig 7: Student Home Dashboard </p></br>
+
+<p>fig 8:Student Assignment Submission Page </p></br>
+
+![teacher dashboard](https://user-images.githubusercontent.com/97660344/188893430-6818b9a9-510d-4716-970e-d1ad0f7cd6c5.PNG)
+<p>fig 9: Teacher Dashboard </p></br>
