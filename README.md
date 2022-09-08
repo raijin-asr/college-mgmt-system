@@ -52,7 +52,25 @@
 ![student dashboard](https://user-images.githubusercontent.com/97660344/188893032-1f19b2fb-bcaf-4a5e-a3fb-8b70f2ae71b4.PNG)
 <p>fig 7: Student Home Dashboard </p></br>
 
+![assignment submission](https://user-images.githubusercontent.com/97660344/189114854-7e151c48-8149-46e2-b793-d5411da763b4.PNG)
 <p>fig 8:Student Assignment Submission Page </p></br>
 
 ![teacher dashboard](https://user-images.githubusercontent.com/97660344/188893430-6818b9a9-510d-4716-970e-d1ad0f7cd6c5.PNG)
 <p>fig 9: Teacher Dashboard </p></br>
+
+![create assignment modal](https://user-images.githubusercontent.com/97660344/189114654-28f56574-a9e1-4366-9cf6-70f24daa43c3.PNG)
+<p>fig 10: Create Assignment</p></br>
+
+![about cms](https://user-images.githubusercontent.com/97660344/189114774-435e810f-76b6-4352-b7c3-dfb4ee14369d.PNG)
+<p>fig 11: About Page(About CMS) </p></br>
+
+![about college](https://user-images.githubusercontent.com/97660344/189114943-d5fc4763-5bec-4d3d-835d-702ec9902645.PNG)
+<p>fig 12: About Page(About College) </p></br>
+
+![about team](https://user-images.githubusercontent.com/97660344/189115097-6573fce1-0c09-4555-bf87-890902fdb4b4.PNG)
+<p>fig 13: About Page(About Team) </p></br>
+
+![contact](https://user-images.githubusercontent.com/97660344/189115029-bb63edc6-a9ce-409c-bb9b-d675cee017f3.PNG)
+<p>fig 14: Contact Page </p></br>
+
+
