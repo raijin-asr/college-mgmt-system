@@ -65,28 +65,28 @@ class T_Assignment(models.Model):
         db_table = 'tassignments'
 
 #For Student Leave
-# class S_Leave(models.Model):
-#     s_leave_id = models.BigAutoField(primary_key=True)
-#     s_leave_name = models.CharField(max_length=100)
-#     s_leave_type = models.CharField(max_length=100)
-#     s_leave_days = models.CharField(max_length=50)
-#     s_leave_reason= models.CharField(max_length=200)
+class S_Leave(models.Model):
+    s_leave_id = models.BigAutoField(primary_key=True)
+    s_leave_name = models.CharField(max_length=100)
+    s_leave_type = models.CharField(max_length=100)
+    s_leave_days = models.CharField(max_length=50)
+    s_leave_reason= models.CharField(max_length=200)
 
-#     #table to be used in database
-#     class Meta:
-#         db_table = 'student_leaves'
+    #table to be used in database
+    class Meta:
+        db_table = 'student_leaves'
 
 # #For Teacher Leave
-# class T_Leave(models.Model):
-#     t_leave_id = models.BigAutoField(primary_key=True)
-#     t_leave_name = models.CharField(max_length=100)
-#     t_leave_type = models.CharField(max_length=100)
-#     t_leave_days = models.CharField(max_length=50)
-#     t_leave_reason= models.CharField(max_length=200)
+class T_Leave(models.Model):
+    t_leave_id = models.BigAutoField(primary_key=True)
+    t_leave_name = models.CharField(max_length=100)
+    t_leave_type = models.CharField(max_length=100)
+    t_leave_days = models.CharField(max_length=50)
+    t_leave_reason= models.CharField(max_length=200)
 
-#     #table to be used in database
-#     class Meta:
-#         db_table = 'teacher_leaves'
+    #table to be used in database
+    class Meta:
+        db_table = 'teacher_leaves'
                  
                 
 
