@@ -1,5 +1,6 @@
 #To create project
--> django-admin startproject student_mgmt
+-> django-admin startproject college_mgmt
+
 # To create application
 -> python manage.py startapp registration
 
@@ -11,7 +12,7 @@
 
 # To Run sql migrations
 -> python manage.py sqlmigrate registration 0001
-where registration is app name and '0001' is vesrion
+where registration is app name and '0001' is version
 
 # To run application
 -> python manage.py runserver
