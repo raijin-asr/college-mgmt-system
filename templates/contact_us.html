@@ -1,3 +1,4 @@
+{% load static %}  
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <body>
 
       <!-- Header -->
-      <header class="bg-danger text-center py-5 mb-4">
+      <header class="bg-danger text-center py-4 mb-4">
         <div class="container">
         <h1 class="fw-light text-white">Contact Us</h1>
         </div>
@@ -127,39 +128,39 @@
       </div>
    
 <!-- Header -->
-<header class="bg-primary text-center py-5 mb-4">
+<!-- <header class="bg-primary text-center py-5 mb-4">
     <div class="container">
       <h1 class="fw-light text-white">Meet Our Team</h1>
     </div>
-  </header>
+  </header> -->
   
   <!-- Page Content -->
   <div class="container">
     <div class="row">
       <!-- Team Member 1 -->
-      <div class="col-xl-4 col-md-4 mb-4">
+      <!-- <div class="col-xl-4 col-md-4 mb-4">
         <div class="card border-0 shadow">
-          <img src="https://source.unsplash.com/TMgQMXoglsM/500x350" class="card-img-top" alt="...">
+          <img src="{% static 'img/t1.jpg' %}" class="card-img-top" alt="...">
           <div class="card-body text-center">
             <h5 class="card-title mb-0">Ameer Sampang Rai</h5>
             <div class="card-text text-black-50">Team Lead</div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- Team Member 2 -->
-      <div class="col-xl-4 col-md-4 mb-4">
+      <!-- <div class="col-xl-4 col-md-4 mb-4">
         <div class="card border-0 shadow">
-          <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="...">
+          <img src="{% static 'img/t2.jpg' %}" class="card-img-top" alt="...">
           <div class="card-body text-center">
             <h5 class="card-title mb-0">Krishna Kumar Khanw</h5>
             <div class="card-text text-black-50">Vice Team Lead</div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- Team Member 3 -->
-      <div class="col-xl-4 col-md-4 mb-4">
+      <!-- <div class="col-xl-4 col-md-4 mb-4">
         <div class="card border-0 shadow">
-          <img src="https://source.unsplash.com/sNut2MqSmds/500x350" class="card-img-top" alt="...">
+          <img src="{% static 'img/t3.jpg' %}" class="card-img-top" alt="...">
           <div class="card-body text-center">
             <h5 class="card-title mb-0">Kiran Sharma</h5>
             <div class="card-text text-black-50">Member</div>
@@ -167,15 +168,23 @@
         </div>
       </div>
 
-    </div>
+    </div> -->
     <!-- /.row -->
   
-  </div>
+  <!-- </div> -->
   <!-- /.container -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!-- Footer section -->
+</br></br>
+<footer class="bg-danger text-center text-lg-start fixed-bottom" style="background: #9febc8!important">
+  <div class="text-center p-3 text-dark">
+    ©2022 Copyright. All Right Reserved || Developed by <a class="text-dark fw-bold" href="#">AK² Brothers</a>
+  </div>
+</footer>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}">
 
 </script> 
 </body>

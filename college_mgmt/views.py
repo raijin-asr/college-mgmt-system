@@ -6,7 +6,6 @@ from registration. models import Teacher,Student, Course, Assignment, T_Assignme
 from user_mgmt. models import User
 
 
-
 def index(request):
     return render(request, "home.html")
 
@@ -17,7 +16,7 @@ def about_home(request):
     return render(request, "about_home.html")
 
 def contact(request):
-    return render(request, "contact_us_admin.html")
+    return render(request, "contact_us.html")
 
 class AdminHomeView(View):
     @auth_required        
@@ -28,9 +27,7 @@ class AdminHomeView(View):
                 "user_count": User.objects.count(),
                 "course_count": Course.objects.count(),
                 "assignment_count": Assignment.objects.count(),
-                "tassignment_count": T_Assignment.objects.count(),
-
-
+                # "tassignment_count": T_Assignment.objects.count(),
             }
         return render(request, "admin_home.html",context)
 
